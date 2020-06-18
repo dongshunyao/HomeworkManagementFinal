@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface SubmitMapper {
@@ -18,4 +20,16 @@ public interface SubmitMapper {
 
     @Insert("INSERT INTO submit(student_id, homework_id, title, content) VALUES (#{studentId}, #{homeworkId}, #{title}, #{content});")
     void insert(int studentId, int homeworkId, String title, String content);
+
+    @Select("SELECT COUNT(*) FROM submit WHERE homework_id = #{homeworkId};")
+    int submitCount(int homeworkId);
+
+    @Select("SELECT * FROM submit WHERE homework_id = #{homeworkId};")
+    List<Submit> getSubmitByHomeworkId(int homeworkId);
+
+    @Select("SELECT * FROM submit WHERE id = #{submitId};")
+    Submit getSubmitById(int submitId);
+
+    @Update("UPDATE submit SET score = #{score}, comment = #{comment} WHERE id = #{id};")
+    void review(int id, int score, String comment);
 }
