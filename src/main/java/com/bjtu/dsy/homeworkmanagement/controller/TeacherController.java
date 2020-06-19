@@ -3,11 +3,13 @@ package com.bjtu.dsy.homeworkmanagement.controller;
 import com.bjtu.dsy.homeworkmanagement.service.TeacherService;
 import com.bjtu.dsy.homeworkmanagement.util.response.TeacherResponse.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/teacher")
+@CrossOrigin(origins = "*")
 public class TeacherController {
     private TeacherService teacherService;
 

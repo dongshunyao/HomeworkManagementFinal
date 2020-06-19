@@ -10,4 +10,4 @@ spring:
     password: 19990326
 
 server:
-  port: 80
+  port: 8081
