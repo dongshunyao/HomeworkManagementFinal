@@ -12,7 +12,7 @@ public class StudentResponse {
     public static class HomeworkListResponse {
         int state;
         String message;
-        List<info> list;
+        List<HomeworkListResponse.info> list;
 
         @Data
         @AllArgsConstructor
