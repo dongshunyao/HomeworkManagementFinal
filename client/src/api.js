@@ -2,7 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 
 let config = {
-    baseURL: 'http://localhost:8081',
+    baseURL: '',
 
     userLogin: {url: '/user/login'},
     userLogout: {url: '/user/logout'},

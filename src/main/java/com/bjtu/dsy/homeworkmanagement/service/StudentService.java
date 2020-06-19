@@ -80,7 +80,6 @@ public class StudentService {
             infoResponse.setType(2);
             infoResponse.setSubmitTitle(submit.getTitle());
             infoResponse.setSubmitContent(submit.getContent());
-            System.out.println(submit.getTitle());
         } else {
             infoResponse.setType(3);
             infoResponse.setSubmitTitle(submit.getTitle());
