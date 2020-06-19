@@ -19,17 +19,17 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public LogResponse login(int id, String password, boolean isTeacher) {
-        return userService.login(id, password, isTeacher);
+    public LogResponse login(int id, String password, boolean teacher) {
+        return userService.login(id, password, teacher);
     }
 
     @RequestMapping("/logout")
-    public LogResponse logout(int id, String token, boolean isTeacher) {
-        return userService.logout(id, token, isTeacher);
+    public LogResponse logout(int id, String token, boolean teacher) {
+        return userService.logout(id, token, teacher);
     }
 
     @RequestMapping("/register")
-    public RegisterResponse register(int id, String name, String password, boolean isTeacher) {
-        return userService.register(id, name, password, isTeacher);
+    public RegisterResponse register(int id, String name, String password, boolean teacher) {
+        return userService.register(id, name, password, teacher);
     }
 }

@@ -19,9 +19,9 @@ public class UserService {
         this.studentMapper = studentMapper;
     }
 
-    public User getUser(int id, boolean isTeacher) {
+    public User getUser(int id, boolean teacher) {
         User user;
-        if (isTeacher) {
+        if (teacher) {
             user = teacherMapper.getTeacher(id);
         } else {
             user = studentMapper.getStudent(id);
@@ -29,49 +29,49 @@ public class UserService {
         return user;
     }
 
-    public LogResponse login(int id, String password, boolean isTeacher) {
-        User user = getUser(id, isTeacher);
+    public LogResponse login(int id, String password, boolean teacher) {
+        User user = getUser(id, teacher);
         if (user == null) {
-            return new LogResponse(-1, id, isTeacher, "用户不存在！", "");
+            return new LogResponse(-1, id, teacher, "用户不存在！", "");
         }
         if (!user.getPassword().equals(password)) {
-            return new LogResponse(-2, id, isTeacher, "密码错误！", "");
+            return new LogResponse(-2, id, teacher, "密码错误！", "");
         }
 
         TokenUtil.setToken(user);
-        if (isTeacher) {
+        if (teacher) {
             teacherMapper.updateToken(user);
         } else {
             studentMapper.updateToken(user);
         }
-        return new LogResponse(0, id, isTeacher, "登陆成功！", user.getToken());
+        return new LogResponse(0, id, teacher, "登陆成功！", user.getToken());
     }
 
-    public LogResponse logout(int id, String token, boolean isTeacher) {
-        User user = getUser(id, isTeacher);
+    public LogResponse logout(int id, String token, boolean teacher) {
+        User user = getUser(id, teacher);
         if (user == null) {
-            return new LogResponse(-1, id, isTeacher, "用户不存在！", "");
+            return new LogResponse(-1, id, teacher, "用户不存在！", "");
         }
         if (!user.getToken().equals(token)) {
-            return new LogResponse(-100, id, isTeacher, "身份验证错误！", "");
+            return new LogResponse(-100, id, teacher, "身份验证错误！", "");
         }
 
         user.setToken("");
-        if (isTeacher) {
+        if (teacher) {
             teacherMapper.updateToken(user);
         } else {
             studentMapper.updateToken(user);
         }
-        return new LogResponse(0, id, isTeacher, "登出成功！", "");
+        return new LogResponse(0, id, teacher, "登出成功！", "");
     }
 
-    public RegisterResponse register(int id, String name, String password, boolean isTeacher) {
-        User user = getUser(id, isTeacher);
+    public RegisterResponse register(int id, String name, String password, boolean teacher) {
+        User user = getUser(id, teacher);
         if (user != null) {
             return new RegisterResponse(-1, "用户已存在！");
         }
 
-        if (isTeacher) {
+        if (teacher) {
             teacherMapper.register(id, name, password);
         } else {
             studentMapper.register(id, name, password);

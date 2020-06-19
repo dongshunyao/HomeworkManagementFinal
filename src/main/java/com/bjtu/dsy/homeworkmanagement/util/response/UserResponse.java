@@ -9,7 +9,7 @@ public class UserResponse {
     public static class LogResponse {
         int state;
         int id;
-        boolean isTeacher;
+        boolean teacher;
         String message;
         String token;
     }
